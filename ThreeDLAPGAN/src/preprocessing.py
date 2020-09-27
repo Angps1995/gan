@@ -34,11 +34,21 @@ def smart_downsampling(data,pc_count,write_dir = 'log.txt'):
 
 def smart_upsampling(data,pc_count,num_neighbors=5,write_dir = 'log.txt'):
     buf_size=1
-    fout = open('log.txt', 'wb', buf_size)
+    fout = open('log.txt', 'w', buf_size)
     pclouds_smart = np.empty([data.shape[0],data.shape[1]+pc_count, data.shape[2]], dtype=np.float32)
     for i,pc in tqdm(enumerate(data)):
+        # print('here first')
         while True:
+            # fout.write(str(i)+'\n')
+            # knn  = NearestNeighbors(n_neighbors=num_neighbors)
+
+            # knn.fit(pc)
+
+            # neighbors = knn.kneighbors(pc, return_distance=False)
+            # pclouds_smart[i,:pc_count] = pc
+            # pclouds_smart[i,pc_count:] = pc[knn.kneighbors(pc, return_distance=False)].mean(axis=1)
             try:
+                # print('here')
                 fout.write(str(i)+'\n')
                 knn  = NearestNeighbors(n_neighbors=num_neighbors)
 
